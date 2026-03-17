@@ -29,21 +29,20 @@ sorting — a problem where algorithm choice has dramatic real-world impact.
 |---|---|
 | `sorts.py` | Sorting algorithm implementations. **You must implement `insertion_sort`** — the rest are provided. |
 | `lab1.py` | **You create this file.** Your benchmarking program. |
-| `requirements.txt` | Python dependencies (`matplotlib`). |
+| `lab1work.xlsx` | Spreadsheet for logging runtimes, auto-averaging, and graphing. |
+| `requirements.txt` | Python dependencies. |
 
 ## Getting Started
 
 ### Prerequisites
 
 - Python 3.12 (required)
-- `matplotlib` for graphing
 
 ### Setup
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
 ```
 
 ## What You Will Do
@@ -67,10 +66,9 @@ It should do the following:
 1. **Import what you need:**
    - `time` (for measuring execution time)
    - `random` (for generating random data)
-   - `matplotlib.pyplot` (for graphing)
-   - The five sorting functions from `sorts.py`
+   - The sorting functions from `sorts.py`
    - Note: for Python's built-in sort, you can simply call `list.sort()`
-     or `sorted()` directly — no import from `sorts.py` needed.
+     directly — no import from `sorts.py` needed.
 
 2. **Write a function to generate test data:**
    - Create a function that takes a `size` parameter and returns a list
@@ -94,11 +92,21 @@ It should do the following:
      **average** time.
    - Print the results to the terminal in a readable format.
 
-5. **Generate a graph:**
-   - Plot all five algorithms on a single line chart.
-   - X-axis: input size (`n`). Y-axis: average time (seconds).
-   - Include a legend, axis labels, and a title.
-   - Save the graph as `sorting_runtimes.png`.
+### Step 3: Log Results in the Spreadsheet
+
+Open `lab1work.xlsx` and record your runtimes:
+
+- **[BLUE cells]** Log the execution time of each sorting algorithm for
+  Trial 1, Trial 2, and Trial 3.
+- **[PINK cells]** The average and graph update automatically — do not
+  edit these.
+- **[BLUE cells]** Answer the two questions in the spreadsheet:
+  - How do the sorting algorithms rank (fastest to slowest)?
+  - Do the graphs correspond with the Big-O of each sorting algorithm?
+
+> *Only update the blue portions of the spreadsheet. All pink portions
+> will be automatically updated when you fill in the info for
+> Trial 1, 2, and 3.*
 
 ### Input Sizes
 
@@ -122,8 +130,6 @@ n=   1000: insertion=0.0052s  merge=0.0023s  heap=0.0031s  quick=0.0019s  builti
 n=   2000: insertion=0.0198s  merge=0.0049s  heap=0.0068s  quick=0.0041s  builtin=0.0002s
 n=   4000: insertion=0.0782s  merge=0.0105s  heap=0.0147s  quick=0.0087s  builtin=0.0004s
 ...
-
-Graph saved to sorting_runtimes.png
 ```
 
 ## What to Look For

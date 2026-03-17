@@ -1,5 +1,4 @@
 venv/
 __pycache__/
 *.pyc
-sorting_runtimes.png
 .DS_Store

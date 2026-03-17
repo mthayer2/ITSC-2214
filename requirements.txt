@@ -1,1 +1,1 @@
-matplotlib
+# No external dependencies required — this lab uses only Python standard library modules.
