@@ -40,10 +40,6 @@ def insertion_sort(a_list):
       3. Walk backward through the sorted portion, shifting each element
          that is greater than `current_value` one position to the right.
       4. Place `current_value` into the gap.
-
-    Performance:
-      - Best case:  O(n)   — the list is already sorted.
-      - Worst case: O(n^2) — the list is in reverse order.
     """
     # TODO: Implement insertion sort here
     pass
@@ -58,7 +54,7 @@ def merge_sort(a_list):
 
     Merge sort is a divide-and-conquer algorithm:
       1. Split the list in half.
-      2. Recursively sort each half.
+      2. Recursively sort each half. (We will look at recursion later this semester)
       3. Merge the two sorted halves into one sorted list.
 
     Unlike insertion sort, merge sort does NOT sort in-place — it builds
@@ -73,11 +69,6 @@ def merge_sort(a_list):
     -------
     list
         A new list containing the same elements in sorted order.
-
-    Performance:
-      - All cases: O(n log n)
-      - The list is split in half log(n) times, and each level of
-        splitting requires n comparisons to merge back together.
     """
 
     # Base case: a list with 0 or 1 elements is already sorted.
@@ -130,11 +121,6 @@ def heap_sort(a_list):
     ----------
     a_list : list
         The list to be sorted. Modified in-place.
-
-    Performance:
-      - All cases: O(n log n)
-      - Building the heap takes O(n), and each of the n removals
-        takes O(log n) to maintain the heap property.
     """
 
     # Phase 1: Rearrange the list into a valid min-heap.
@@ -165,11 +151,6 @@ def quick_sort(a_list):
     ----------
     a_list : list
         The list to be sorted. Modified in-place.
-
-    Performance:
-      - Average case: O(n log n)
-      - Worst case:   O(n^2) — occurs when the pivot is always the
-        smallest or largest element (e.g., already sorted input).
     """
     _quick_sort_recursive(a_list, 0, len(a_list) - 1)
 
