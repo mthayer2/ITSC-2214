@@ -25,9 +25,10 @@ sorting — a problem where algorithm choice has dramatic real-world impact.
 
 ## What You Will Do
 
-1. **Implement the sorting algorithms** — Complete the four sorting functions
-   in `empirical_analysis.py` (insertion sort, merge sort, heap sort, and
-   quick sort). Python's built-in `sorted()` is already provided.
+1. **Implement insertion sort** — Complete the `insertion_sort` function
+   in `empirical_analysis.py`. The other four sorting algorithms (merge sort,
+   heap sort, quick sort, and Python's built-in `sorted()`) are already
+   provided for you.
 
 2. **Benchmark each algorithm** — Time each sort across multiple input sizes,
    running **3 trials** per size and averaging the results.
@@ -92,32 +93,18 @@ makes it prohibitively slow beyond ~32,000 elements.
 
 ## Implementation Guide
 
-Open `empirical_analysis.py` and complete the four `TODO` sections:
+Open `empirical_analysis.py` and complete the one `TODO` section:
 
-### 1. `insertion_sort(lst)`
+### `insertion_sort(lst)`
 Sort the list in-place using the insertion sort algorithm:
 - Iterate from index 1 to the end of the list
 - For each element, save it as a `key` and shift larger elements to the right
 - Insert the `key` into its correct position
 
-### 2. `merge_sort(lst)`
-Return a new sorted list using the merge sort algorithm:
-- **Base case:** a list of length 0 or 1 is already sorted
-- **Recursive step:** split the list in half, recursively sort each half,
-  then merge the two sorted halves together
-
-### 3. `heap_sort(lst)`
-Sort the list in-place using Python's `heapq` module:
-- Use `heapq.heapify()` to convert the list into a min-heap
-- Use `heapq.heappop()` to extract elements in sorted order
-- Copy the sorted elements back into the original list
-
-### 4. `quick_sort(lst)`
-Sort the list in-place using the quick sort algorithm:
-- **Base case:** a list of length 0 or 1 is already sorted
-- **Partition:** choose a pivot, separate elements into those less than
-  and greater than the pivot
-- **Recurse** on the two partitions
+The other four algorithms (merge sort, heap sort, quick sort, and Python's
+built-in `sorted()`) are already implemented in the starter code. You are
+encouraged to read them to understand how they work — you will study these
+algorithms in depth later in the course.
 
 > **Important:** Do not modify the `benchmark()`, `run_benchmarks()`,
 > or `plot_results()` functions. These handle timing, averaging, and

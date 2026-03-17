@@ -43,47 +43,68 @@ def insertion_sort(lst):
 def merge_sort(lst):
     """Return a **new** sorted list using merge sort.
 
-    Algorithm:
-        - Base case: a list of length 0 or 1 is already sorted — return it.
-        - Split the list into two halves.
-        - Recursively sort each half.
-        - Merge the two sorted halves into a single sorted list and return it.
-
-    This function should NOT modify the original list.
+    You do NOT need to modify this function — it is provided for you.
+    You will study merge sort in depth later in the course.
     """
-    # TODO: Implement merge sort
-    pass
+    if len(lst) <= 1:
+        return list(lst)
+
+    mid = len(lst) // 2
+    left = merge_sort(lst[:mid])
+    right = merge_sort(lst[mid:])
+
+    merged = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    return merged
 
 
 def heap_sort(lst):
     """Sort *lst* in-place using heap sort via the heapq module.
 
-    Algorithm:
-        - Use heapq.heapify(lst) to turn lst into a min-heap in-place.
-        - Pop all elements from the heap into a temporary list using heapq.heappop().
-        - Copy the sorted elements back into lst.
-
-    Must modify the list in-place (do not return a new list).
+    You do NOT need to modify this function — it is provided for you.
+    You will study heaps in depth later in the course.
     """
-    # TODO: Implement heap sort
-    pass
+    heapq.heapify(lst)
+    sorted_values = [heapq.heappop(lst) for _ in range(len(lst))]
+    lst[:] = sorted_values
 
 
 def quick_sort(lst):
     """Sort *lst* in-place using quick sort.
 
-    Algorithm:
-        - Base case: if the list has 0 or 1 elements, return.
-        - Choose a pivot (e.g., the last element).
-        - Partition the remaining elements into two groups:
-          those less than or equal to the pivot, and those greater.
-        - Recursively sort each group.
-        - Write the sorted result back into lst.
-
-    Must modify the list in-place (do not return a new list).
+    You do NOT need to modify this function — it is provided for you.
+    You will study quick sort in depth later in the course.
     """
-    # TODO: Implement quick sort
-    pass
+    _quick_sort_helper(lst, 0, len(lst) - 1)
+
+
+def _quick_sort_helper(lst, low, high):
+    """Recursive helper for quick sort."""
+    if low < high:
+        pivot_index = _partition(lst, low, high)
+        _quick_sort_helper(lst, low, pivot_index - 1)
+        _quick_sort_helper(lst, pivot_index + 1, high)
+
+
+def _partition(lst, low, high):
+    """Partition lst[low..high] around the last element as pivot."""
+    pivot = lst[high]
+    i = low - 1
+    for j in range(low, high):
+        if lst[j] <= pivot:
+            i += 1
+            lst[i], lst[j] = lst[j], lst[i]
+    lst[i + 1], lst[high] = lst[high], lst[i + 1]
+    return i + 1
 
 
 def builtin_sort(lst):
