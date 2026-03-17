@@ -1,4 +1,4 @@
-# Lab: Empirical Analysis of Sorting Algorithms
+# Lab 1: Empirical Analysis of Sorting Algorithms
 
 ## Overview
 
@@ -23,21 +23,13 @@ sorting — a problem where algorithm choice has dramatic real-world impact.
 | Quick Sort | O(n log n) average | Fast in practice, O(n²) worst-case |
 | Python's built-in `sorted()` | O(n log n) | Timsort — Python's optimized hybrid sort |
 
-## What You Will Do
+## Files in This Repository
 
-1. **Implement insertion sort** — Complete the `insertion_sort` function
-   in `empirical_analysis.py`. The other four sorting algorithms (merge sort,
-   heap sort, quick sort, and Python's built-in `sorted()`) are already
-   provided for you.
-
-2. **Benchmark each algorithm** — Time each sort across multiple input sizes,
-   running **3 trials** per size and averaging the results.
-
-3. **Generate a graph** — Your program will produce a line chart
-   (`sorting_runtimes.png`) showing all five algorithms on a single plot.
-
-4. **Answer analysis questions** — Add your answers directly to this README
-   in the [Analysis Questions](#analysis-questions) section at the bottom.
+| File | Description |
+|---|---|
+| `sorts.py` | Sorting algorithm implementations. **You must implement `insertion_sort`** — the rest are provided. |
+| `lab1.py` | **You create this file.** Your benchmarking program. |
+| `requirements.txt` | Python dependencies (`matplotlib`). |
 
 ## Getting Started
 
@@ -54,16 +46,72 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Running the Lab
+## What You Will Do
 
-```bash
-python3 empirical_analysis.py
-```
+### Step 1: Implement Insertion Sort
 
-This will:
-- Run all sorting benchmarks across the configured input sizes
-- Print a results table to the terminal
-- Save a graph to `sorting_runtimes.png`
+Open `sorts.py` and complete the `insertion_sort` function. It is the only
+`TODO` in the file. Read the docstring for the algorithm outline.
+
+The other sorting algorithms (merge sort, heap sort, quick sort) are
+provided for you. You are encouraged to read through them — the code uses
+clear variable names and comments explaining what each step does and how
+many times each loop iterates. You will study these algorithms in depth
+later in the course.
+
+### Step 2: Create `lab1.py`
+
+Create a new file called `lab1.py`. This is your benchmarking program.
+It should do the following:
+
+1. **Import what you need:**
+   - `time` (for measuring execution time)
+   - `random` (for generating random data)
+   - `matplotlib.pyplot` (for graphing)
+   - The five sorting functions from `sorts.py`
+   - Note: for Python's built-in sort, you can simply call `list.sort()`
+     or `sorted()` directly — no import from `sorts.py` needed.
+
+2. **Write a function to generate test data:**
+   - Create a function that takes a `size` parameter and returns a list
+     of that many random integers.
+   - Use `random.randint()` to generate each value.
+   - **Important:** You must generate a fresh list (or make a copy) before
+     each sort, because sorting modifies the list. Sorting an
+     already-sorted list gives misleading times.
+
+3. **Write a function to benchmark a single sort:**
+   - Record the start time using `time.perf_counter()`.
+   - Run the sort.
+   - Record the end time.
+   - Return the elapsed time.
+   - Remember that `merge_sort` returns a new list while the others
+     sort in-place.
+
+4. **Run benchmarks across multiple input sizes:**
+   - Use the input sizes from the table below.
+   - For each size, run **3 trials** per algorithm and compute the
+     **average** time.
+   - Print the results to the terminal in a readable format.
+
+5. **Generate a graph:**
+   - Plot all five algorithms on a single line chart.
+   - X-axis: input size (`n`). Y-axis: average time (seconds).
+   - Include a legend, axis labels, and a title.
+   - Save the graph as `sorting_runtimes.png`.
+
+### Input Sizes
+
+Because Python is interpreted, it runs significantly slower than compiled
+languages. The input sizes have been calibrated accordingly:
+
+| Algorithm | Sizes Tested |
+|---|---|
+| Merge, Heap, Quick, Built-in | 1,000 → 2,000 → 4,000 → 8,000 → 16,000 → 32,000 → 64,000 → 128,000 → 256,000 → 512,000 |
+| Insertion Sort | 1,000 → 2,000 → 4,000 → 8,000 → 16,000 → 32,000 |
+
+Insertion sort is excluded from the larger sizes because its O(n²) growth
+makes it prohibitively slow beyond ~32,000 elements.
 
 ### Sample Output
 
@@ -77,38 +125,6 @@ n=   4000: insertion=0.0782s  merge=0.0105s  heap=0.0147s  quick=0.0087s  builti
 
 Graph saved to sorting_runtimes.png
 ```
-
-## Input Sizes
-
-Because Python is interpreted, it runs significantly slower than compiled
-languages. The input sizes have been calibrated accordingly:
-
-| Algorithm | Sizes Tested |
-|---|---|
-| Merge, Heap, Quick, Built-in | 1,000 → 2,000 → 4,000 → 8,000 → 16,000 → 32,000 → 64,000 → 128,000 → 256,000 → 512,000 |
-| Insertion Sort | 1,000 → 2,000 → 4,000 → 8,000 → 16,000 → 32,000 |
-
-Insertion sort is excluded from the larger sizes because its O(n²) growth
-makes it prohibitively slow beyond ~32,000 elements.
-
-## Implementation Guide
-
-Open `empirical_analysis.py` and complete the one `TODO` section:
-
-### `insertion_sort(lst)`
-Sort the list in-place using the insertion sort algorithm:
-- Iterate from index 1 to the end of the list
-- For each element, save it as a `key` and shift larger elements to the right
-- Insert the `key` into its correct position
-
-The other four algorithms (merge sort, heap sort, quick sort, and Python's
-built-in `sorted()`) are already implemented in the starter code. You are
-encouraged to read them to understand how they work — you will study these
-algorithms in depth later in the course.
-
-> **Important:** Do not modify the `benchmark()`, `run_benchmarks()`,
-> or `plot_results()` functions. These handle timing, averaging, and
-> graphing for you.
 
 ## What to Look For
 
